@@ -1,0 +1,281 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' https://cbsservis.tkgm.gov.tr/megsiswebapi.v3/api/parsel/ megsis sayfasýný kullanmaktadýr.
+' Zaman zaman yapýlan güncellemeler ile adres deðiþmekte olup kod yapýsýnda ilgili kýsýmlar deðiþtirilerek eklemeler yapýlabilir.
+' Samsun için megsisapiden seçilen parselle ilgili bilgileri json olarak çeker 
+' diðer iller için sgorkemtabak\Makrolar\samsun_mahalle_id.csv dosyasýný inceleyip kendinize uygun hale getirebilirsiniz
+' Alýnan bilgileri bir dosyaya kaydedip bunlarý netcade ekler
+
+Sub Main
+Dim ilcesecim,mahallesecim,adaparselgiris
+Dim secilenilce,secilenmahalle,secilenmahalleid
+dim fs,objTextFile,arrStr
+dim strilce,strmahalle,strid
+dim filtreleilce,list,list2,listmahalle,listmahalleid
+dim secimno,ada,parsel,url,objShell
+dim foku,fsooku,jsonoku
+dim veriparselid,veriparselno,veriada,verialan,veripafta,verinitelik,veriilce,verimahalle
+Dim obj
+dim i
+with Netcad
+
+'Ýlçe Seçim Menüsü Kýsmý
+set ilcesecim = Netcad.NewBDialog("Samsun Megsis Parsel Bilgilerini Al")
+ilcesecim.Getcombo "comboilce","Ýlçe Seçiniz : ","Atakum|19 mayýs|Alaçam|Asarcýk|Ayvacýk|Bafra|Canik|Çarþamba|Havza|Ýlkadým|Kavak|Ladik|Salýpazarý|Tekkeköy|Terme|Vezirköprü|Yakakent" ,0
+
+if ilcesecim.showmodal then
+
+if ilcesecim.ValueByName("comboilce")=0 Then secilenilce="Atakum"
+if ilcesecim.ValueByName("comboilce")=1 Then secilenilce="19 mayýs"
+if ilcesecim.ValueByName("comboilce")=2 Then secilenilce="Alaçam"
+if ilcesecim.ValueByName("comboilce")=3 Then secilenilce="Asarcýk"
+if ilcesecim.ValueByName("comboilce")=4 Then secilenilce="Ayvacýk"
+if ilcesecim.ValueByName("comboilce")=5 Then secilenilce="Bafra"
+if ilcesecim.ValueByName("comboilce")=6 Then secilenilce="Canik"
+if ilcesecim.ValueByName("comboilce")=7 Then secilenilce="Çarþamba"
+if ilcesecim.ValueByName("comboilce")=8 Then secilenilce="Havza"
+if ilcesecim.ValueByName("comboilce")=9 Then secilenilce="Kavak"
+if ilcesecim.ValueByName("comboilce")=10 Then secilenilce="Kavak"
+if ilcesecim.ValueByName("comboilce")=11 Then secilenilce="Ladik"
+if ilcesecim.ValueByName("comboilce")=12 Then secilenilce="Salýpazarý"
+if ilcesecim.ValueByName("comboilce")=13 Then secilenilce="Tekkeköy"
+if ilcesecim.ValueByName("comboilce")=14 Then secilenilce="Terme"
+if ilcesecim.ValueByName("comboilce")=15 Then secilenilce="Vezirköprü"
+if ilcesecim.ValueByName("comboilce")=16 Then secilenilce="Yakakent"
+
+set ilcesecim = Nothing
+end if
+'Ýlçe Seçim Menüsü Kýsmý Sonu
+
+set fs=CreateObject("Scripting.FileSystemObject")
+set objTextFile = fs.OpenTextFile("C:\sgorkemtabak\Makrolar\samsun_mahalle_id.csv")
+Set list = CreateObject("System.Collections.ArrayList")
+Set list2 = CreateObject("System.Collections.ArrayList")
+
+Do while NOT objTextFile.AtEndOfStream
+arrStr = split(objTextFile.ReadLine,";")
+
+strilce = arrStr(0)
+strmahalle = arrStr(1)
+strid = arrStr(2)
+
+if strilce = secilenilce then
+listmahalle = arrStr(1)
+listmahalleid = arrStr(2)
+list.Add listmahalle
+list2.Add listmahalleid
+end if
+
+Loop
+
+'Mahalle Seçim Menüsü Kýsmý
+set mahallesecim = Netcad.NewBDialog("Mahalle Seçiniz")
+mahallesecim.GetCombo "combomahalle", "Mahalle(Semt) : ", "Mahalle Seçiniz", 1
+for i = 0 to list.Count-1
+mahallesecim.AddCombo list.Item(i)
+next
+if mahallesecim.showmodal then
+secimno = mahallesecim.ValueByName("combomahalle")
+secilenmahalle = list.Item(secimno-1)
+secilenmahalleid = list2.Item(secimno-1)
+set mahallesecim = Nothing
+end if
+'Mahalle Seçim Menüsü Kýsmý Sonu
+
+'Kullanýcada Ada/Parsel Bilgilerinin Alýndýðý Ekran Kýsmý
+set adaparselgiris = Netcad.NewBDialog("Bilgi Giriþi için Gerekli Veriler")
+adaparselgiris.Getstring "grkmada","Ada: ","",50
+adaparselgiris.Getstring "grkmparsel","Parsel: ","",50
+if adaparselgiris.showmodal then
+
+ada = adaparselgiris.ValueByName("grkmada")
+parsel = adaparselgiris.ValueByName("grkmparsel")
+veriparselno=ada
+veriada=parsel
+veriilce=secilenilce
+verimahalle=secilenmahalle
+
+set adaparselgiris = Nothing
+end if
+'Kullanýcada Ada/Parsel Bilgilerinin Alýndýðý Ekran Kýsmý Sonu
+
+objTextFile.Close
+set objTextFile = Nothing
+set fs = Nothing
+  
+url="https://cbsservis.tkgm.gov.tr/megsiswebapi.v3/api/parsel/"&secilenmahalleid&"/"&ada&"/"&parsel
+dim xHttp: Set xHttp = createobject("Microsoft.XMLHTTP")
+dim bStrm: Set bStrm = createobject("Adodb.Stream")
+xHttp.Open "GET", url, False
+xHttp.Send
+
+with bStrm
+    .type = 1 '//binary
+    .open
+    .write xHttp.responseBody
+    .savetofile "C:\sgorkemtabak\Makrolar\megsis-indirilen-p1.json", 2 '//dosya varsa üstüne yazar
+end with
+
+'Ýndirilen megsis dosyasýný okuma
+Set fsooku = CreateObject("Scripting.FileSystemObject")
+Set foku = fsooku.OpenTextFile("C:\sgorkemtabak\Makrolar\megsis-indirilen-p1.json")
+
+jsonoku = foku.ReadLine
+'Öncelikle olarak json dosyasýný netcade aktarýrken oluþan türkçe karakter hatalarýný düzeltelim
+jsonoku = replace(jsonoku,"Ãœ","Ü")
+jsonoku = replace(jsonoku,"Å","Þ")
+jsonoku = replace(jsonoku,"Ä","ð")
+jsonoku = replace(jsonoku,"Ã‡","Ç")
+jsonoku = replace(jsonoku,"Ä°","Ý")
+jsonoku = replace(jsonoku,"ð°","Ý")
+jsonoku = replace(jsonoku,"Ã–","Ö")
+jsonoku = replace(jsonoku,"Ã¼","ü")
+jsonoku = replace(jsonoku,"ÅŸ","þ")
+jsonoku = replace(jsonoku,"ÞŸ","þ")
+jsonoku = replace(jsonoku,"ÄŸ","ð")
+jsonoku = replace(jsonoku,"Ã§","ç")
+jsonoku = replace(jsonoku,"Ä±","ý")
+jsonoku = replace(jsonoku,"Ã¶","ö")
+jsonoku = replace(jsonoku,"Ÿ","")
+jsonoku = replace(jsonoku,"ð±","ý")
+jsonoku = replace(jsonoku,"Ð±","ý")
+jsonoku = replace(jsonoku,"Ð°","Ý")
+jsonoku = replace(jsonoku,"Ä±","ý")
+jsonoku = replace(jsonoku,"Ã¼","ü")
+jsonoku = replace(jsonoku,"Ã§","ç")
+jsonoku = replace(jsonoku,"Ã¶","ö")
+jsonoku = replace(jsonoku,"""","$")
+
+jsonoku = Mid(jsonoku,instr(jsonoku,"parselId")+10)
+dim n1,n2,n3,n4,n5,n6,n7
+dim s1,s2,s3,s4,s5,s6
+n1=split(jsonoku,",$parselNo$:$")
+veriparselid = n1(0)
+s1=n1(1)
+n2=split(s1,"$,$nitelik$:$")
+'veriparsel=n2(0)
+s2=n2(1)
+n3=split(s2,"$,$mahalleAd$:$")
+verinitelik=n3(0)
+s3=n3(1)
+n4=split(s3,"$,$alan$:$")
+s4=n4(1)
+n5=split(s4,"$,$adaNo$:$")
+verialan = n5(0)
+s5=n5(1)
+n6=split(s5,"$pafta$:$")
+s6=n6(1)
+n7=split(s6,"$}}")
+veripafta=n7(0)
+
+veriparselno=parsel 
+veriada=ada
+veriilce=secilenilce
+verimahalle=secilenmahalle
+verialan = replace(verialan,",",".")
+'Ýndirilen megsis dosyasýný okuma SONU
+
+'Bilgileri Kliþelere Ýþleme
+.setfilter nothing, array(),array(otext)
+do
+set obj=.getnextobject
+if obj is nothing then
+exit do
+else
+obj.s=replace(obj.s,"<ÝLÇE>",TR(veriilce, 1))
+obj.s=replace(obj.s,"<MAHALLE>",TR(verimahalle, 1))
+obj.s=replace(obj.s,"<ADA>",veriada)
+obj.s=replace(obj.s,"<PRSL1>",veriparselno)
+obj.s=replace(obj.s,"<ALAN1>",verialan)
+obj.s=replace(obj.s,"<PFT>",TR(veripafta, 1))
+obj.s=replace(obj.s,"<CÝNS>",TR(verinitelik, 1))
+end if
+.PUTOBJECT .CUROBJPOS,OBJ
+loop
+.resetfilter
+'Bilgileri Kliþelere Ýþleme SONU
+
+'Ýþlem sonucu mesaj olarak gösterme
+Msgbox(":: Seçilen Ada/Parsel Bilgileri ::"&chr(13)&"_______________________________"&chr(13)&" "&chr(13)&"Ýlçe : "&veriilce&chr(13)&"Mahalle : "&verimahalle&chr(13)&"Ada : "&veriada&chr(13)&"Parsel : "&veriparselno&chr(13)&"Parsel ID : "&veriparselid&chr(13)&"Parsel Niteliði : "&verinitelik&chr(13) &"Alan : "&verialan&chr(13)&"Pafta : "&veripafta&chr(13)&"_______________________________"&chr(13)&" "&chr(13)&"Ýþlem Baþarýyla Tamamlandý"&chr(13)&"_______________________________"&chr(13)&" "&chr(13)&"Salih Görkem Tabak"&chr(13)&"gorkemtabak@gmail.com")
+'sonuc=Msgbox("Ýþlem Tamamlandý",vbInformation, "Salih Görkem Tabak")
+
+end with
+End Sub
+
+function TR(metin, tur)
+dim sonuctr
+'------------------------------------
+'KULLANIMI:
+'------------------------------------
+'Bir Metni Büyük Harfe Çevirmek Ýçin:
+'TR("Çevrilecek Metin", 1)
+'------------------------------------
+'Bir Metni Küçük Harfe Çevirmek Ýçin:
+'TR("Çevrilecek Metin", 2)
+'------------------------------------
+    if tur = 1 then
+        sonuctr = replace(metin, "a", "A")
+        sonuctr = replace(sonuctr, "b", "B")
+        sonuctr = replace(sonuctr, "c", "C")
+        sonuctr = replace(sonuctr, "ç", "Ç")
+        sonuctr = replace(sonuctr, "d", "D")
+        sonuctr = replace(sonuctr, "e", "E")
+        sonuctr = replace(sonuctr, "f", "F")
+        sonuctr = replace(sonuctr, "g", "G")
+        sonuctr = replace(sonuctr, "ð", "Ð")
+        sonuctr = replace(sonuctr, "h", "H")
+        sonuctr = replace(sonuctr, "ý", "I")
+        sonuctr = replace(sonuctr, "i", "Ý")
+        sonuctr = replace(sonuctr, "j", "J")
+        sonuctr = replace(sonuctr, "k", "K")
+        sonuctr = replace(sonuctr, "l", "L")
+        sonuctr = replace(sonuctr, "m", "M")
+        sonuctr = replace(sonuctr, "n", "N")
+        sonuctr = replace(sonuctr, "o", "O")
+        sonuctr = replace(sonuctr, "ö", "Ö")
+        sonuctr = replace(sonuctr, "p", "P")
+        sonuctr = replace(sonuctr, "r", "R")
+        sonuctr = replace(sonuctr, "s", "S")
+        sonuctr = replace(sonuctr, "þ", "Þ")
+        sonuctr = replace(sonuctr, "t", "T")
+        sonuctr = replace(sonuctr, "u", "U")
+        sonuctr = replace(sonuctr, "ü", "Ü")
+        sonuctr = replace(sonuctr, "v", "V")
+        sonuctr = replace(sonuctr, "y", "Y")
+        sonuctr = replace(sonuctr, "z", "Z")
+        sonuctr = replace(sonuctr, "q", "Q")
+        sonuctr = replace(sonuctr, "w", "W")
+    else
+        sonuctr = replace(metin, "A", "b")
+        sonuctr = replace(sonuctr, "B", "b")
+        sonuctr = replace(sonuctr, "C", "c")
+        sonuctr = replace(sonuctr, "Ç", "ç")
+        sonuctr = replace(sonuctr, "D", "d")
+        sonuctr = replace(sonuctr, "E", "e")
+        sonuctr = replace(sonuctr, "F", "f")
+        sonuctr = replace(sonuctr, "G", "g")
+        sonuctr = replace(sonuctr, "Ð", "ð")
+        sonuctr = replace(sonuctr, "H", "h")
+        sonuctr = replace(sonuctr, "I", "ý")
+        sonuctr = replace(sonuctr, "Ý", "i")
+        sonuctr = replace(sonuctr, "J", "j")
+        sonuctr = replace(sonuctr, "K", "k")
+        sonuctr = replace(sonuctr, "L", "l")
+        sonuctr = replace(sonuctr, "M", "m")
+        sonuctr = replace(sonuctr, "N", "n")
+        sonuctr = replace(sonuctr, "O", "o")
+        sonuctr = replace(sonuctr, "Ö", "ö")
+        sonuctr = replace(sonuctr, "P", "p")
+        sonuctr = replace(sonuctr, "R", "r")
+        sonuctr = replace(sonuctr, "S", "s")
+        sonuctr = replace(sonuctr, "Þ", "þ")
+        sonuctr = replace(sonuctr, "T", "t")
+        sonuctr = replace(sonuctr, "U", "u")
+        sonuctr = replace(sonuctr, "Ü", "ü")
+        sonuctr = replace(sonuctr, "V", "v")
+        sonuctr = replace(sonuctr, "Y", "y")
+        sonuctr = replace(sonuctr, "Z", "z")
+        sonuctr = replace(sonuctr, "Q", "q")
+        sonuctr = replace(sonuctr, "W", "w")
+    end if
+    TR = sonuctr
+end function

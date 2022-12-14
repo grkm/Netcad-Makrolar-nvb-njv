@@ -1,0 +1,30 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Hýzlý Geniþlik Çarpaný Deðiþtirme
+
+Sub Main
+Dim d,ss,b,h,a
+
+with netcad
+
+  set ss = .NewSelectStatus
+  .SelectObjectInstant "Deðiþtirilecek Nesneyi Seç.",1,array(),ss
+  set b = ss.objects(0) 
+  set a = ss.objects(0)
+  set d = Netcad.NewBDialog("Hýzlý Geniþlik Çarpaný Deðiþtir")
+  d.GetFloat  "h","Bir Deðer Girin", b.wsc, 5
+
+  if d.showmodal then
+	a.wsc = d.ValueByName("h")
+	b.wsc = a.wsc
+	.PutObject ss.indexs(0), b
+    .DrawObject b,-1
+  end if
+  
+    set d = Nothing
+    set ss = nothing
+    set b = nothing
+    set h = nothing
+	
+end with
+
+End sub

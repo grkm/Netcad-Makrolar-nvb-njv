@@ -1,0 +1,27 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Hýzlý Projeksiyon Geçirme Örnekte UTM3-ITRF-36 Kullanýlmýþtýr ilgili yerleri deðiþtirerek kullanabilirsiniz.
+
+Sub Main()
+dim pc,a,prjk
+with Netcad
+.FindWorld 
+      
+      set prjk = .NewProjection
+      prjk.GetFromCurrentProject
+	  a=prjk.ProjectionType
+	  if a=0 then
+	  set pc = Netcad.NewProjection
+	  'Projeksiyon - UTM3 kodu 3, UTM6 kodu 2, Coðrafi kodu 1
+	  pc.ProjectionType = 3
+	  pc.Zone = 36
+	  'Datum - ITRF kodu 1, ED50 kodu 4 , WGS kodu 0
+	  pc.Datum = 1
+	  pc.SetToCurrentProject TRUE 'false olursa proje dönüþmez
+	  Netcad.FindWorld
+	  msgbox "Projeksiyon UTM3-ED50-36 DÝLÝM olarak ayarlanmýþtýr.",0,"Ýþlem Baþarýlý - Salih Görkem TABAK"
+end if
+if NOT a=0 then
+msgbox "Projede Tanýmlý Bir Projeksiyon Zaten Mevcut !!!",0,"Ýþlem Baþarýlý - Salih Görkem TABAK"
+end if
+end with
+end sub

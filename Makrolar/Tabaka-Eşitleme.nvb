@@ -1,0 +1,23 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Seçilen nesnenin tabakasýný diðer seçimlere uygulama iþlemi yapan makro
+
+SUB Main
+DIM ss,b,h
+
+  with netcad
+    set ss = .NewSelectStatus                         'Anlik Secim objesi yarat
+    .SelectObjectInstant "Seçtiðiniz objenin biçimi alýnacak.",1,array(),ss
+    set b= ss.objects(0)                              'Biçimleri b objesine ata
+    while .SelectObjectInstant("Seçtiðiniz objenin biçimi deðiþecek.",1,array(),ss)  ' obje sec
+      set h = ss.objects(0)                           'Secim objesinin ilk objesini al
+      h.Tabaka=b.Tabaka
+      .PutObject ss.indexs(0), h                      'objeyi geri koy
+      .DrawObject h,-1                                'kendi büyüklüðü ile tekrar ciz
+    wend
+    set ss = nothing
+    set b = nothing
+    set h = nothing
+  end with
+
+END SUB
+

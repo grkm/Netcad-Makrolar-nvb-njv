@@ -1,0 +1,265 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Netcad Kolay Alan Çýktýsý Alma Örneði
+' NOT: Eski Tecviz Hesaplama Yöntemidir.
+
+Sub Main
+Dim BD,secim,yzby,katsayi,cz1,cz2,cz3,cz4,cz5,cz6,cz7,cz8,cz9,cz10,cz11
+dim yz1,yz2,yz3,yz4,yz5
+dim yz6,yz7,yz8,yz9,yz10
+dim yz11,yz12,yz13,yz14,yz15,yz16,yz17,yz18,yz19,yz20,yz21
+dim tecviz,tecviz1,tecviz2,mfark,tapualani,hesapalani,noktalar
+with Netcad
+set BD = Netcad.NewBDialog("Beyanname Alan Tablosu Oluþturma")
+
+BD.Getcombo "secim","Ýþlem Seçiniz : ","Cins Deðiþikliði|Birleþtirme" ,0
+BD.PutPrompt "Lütfen Gün ve Saat Giriþlerini Belirtilen Formatlarda Giriniz..."
+BD.Getstring "alanadaparsel","Ada/Parsel: ","<ADAPARSEL>",50
+BD.Getstring "alannoktalar","Noktalar: ","<NOKTALAR>",50
+BD.Getstring "alanhesapalani","Hesap Alaný: ","1000",50
+BD.Getstring "alantapualani","Tapu Alaný: ","1000",50
+'BD.Getstring "alanduzeltme","Düzeltme: ","<DÜZELTME>",50
+BD.PutPrompt "Tecviz Parametreleri"
+BD.Getradio "tecviztipi","Tecviz Tipi Belirleyiniz","Yapýlaþma Yok|Yapýlaþma Var" ,1
+BD.Getfloat "tecvizolcek","Ölçek Deðeri:",1000,0
+'BD.Getstring "alantecviz","Tecviz: ","<TECVÝZ>",50
+BD.Getfloat "yaziboy","Yazý boyu kaç olsun ? ",1,2
+
+if BD.showmodal then
+
+if BD.ValueByName("secim")=0 then
+'ÞABLON ÇIKTILARINI EKRANA ALMAK ÝÇÝN BU KOD YAPISI KULLANILACAK 
+mfark=BD.ValueByName("alantapualani")-BD.ValueByName("alanhesapalani")
+tecviz1=0.0004*BD.ValueByName("tecvizolcek")*sqr(BD.ValueByName("alantapualani"))+0.0003*BD.ValueByName("alantapualani")
+tecviz2=0.013*sqr(BD.ValueByName("alantapualani")*BD.ValueByName("tecvizolcek"))+0.0003*BD.ValueByName("alantapualani")
+
+tapualani=BD.ValueByName("alantapualani")
+tapualani=CStr(tapualani)
+tapualani=FormatNumber(tapualani,2,,,vbFalse)
+
+hesapalani=BD.ValueByName("alanhesapalani")
+hesapalani=CStr(hesapalani)
+hesapalani=FormatNumber(hesapalani,2,,,vbFalse)
+
+noktalar=BD.ValueByName("alannoktalar")
+noktalar=replace(noktalar,".",",")
+
+if BD.ValueByName("tecviztipi")=0 then
+ tecviz=tecviz1
+ else
+ tecviz=tecviz2
+ end if
+
+tecviz=CStr(tecviz)
+tecviz=FormatNumber(tecviz,2,,,vbFalse)
+
+mfark=CStr(mfark)
+mfark=FormatNumber(mfark,2,,,vbFalse)
+ 
+yzby=BD.ValueByName("yaziboy")
+katsayi=yzby/1.71
+
+'En dýþ 4 Köþenin Koordinatlarý
+set c = .newc(0,0,0)
+set c2 = .newc(0,0,0)
+set c3 = .newc(0,0,0)
+set c4 = .newc(0,0,0)
+
+'Ýlk Ara Satýrlarýn Koordinatlarý
+set c5 = .newc(0,0,0)
+set c6 = .newc(0,0,0)
+set c7 = .newc(0,0,0)
+set c8 = .newc(0,0,0)
+
+if .SelectPoint("Tablonun Yerleþtirileceði Yeri Seçiniz", c, 2) then
+
+'Seçilen noktaya göre diðer köþe noktalarý oluþturuluyor
+c2.y=c.y+100*katsayi
+c2.x=c.x
+c3.y=c.y
+c3.x=c.x-31.29*katsayi
+c4.x=c.x-31.29*katsayi
+c4.y=c.y+100*katsayi
+
+'oluþturulan köþe noktalarý birleþtirilerek çizgiler çiziliyor
+set cz1 =  .MakeLine(c,c2, 0, 0, 0)
+.addobject(cz1)
+set cz2 =  .MakeLine(c,c3, 0, 0, 0)
+.addobject(cz2)
+set cz3 =  .MakeLine(c3,c4, 0, 0, 0)
+.addobject(cz3)
+set cz4 =  .MakeLine(c2,c4, 0, 0, 0)
+.addobject(cz4)
+
+'ara noktlar oluþturuluyor
+c5.y=c.y
+c5.x=c.x-5.69*katsayi
+c6.y=c.y+100*katsayi
+c6.x=c.x-5.69*katsayi
+set cz5 =  .MakeLine(c5,c6, 0, 0, 0)
+.addobject(cz5)
+
+c5.y=c.y
+c5.x=c.x-11.38*katsayi
+c6.y=c.y+100*katsayi
+c6.x=c.x-11.38*katsayi
+set cz6 =  .MakeLine(c5,c6, 0, 0, 0)
+.addobject(cz6)
+
+c5.y=c.y
+c5.x=c.x-17.07*katsayi
+c6.y=c.y+100*katsayi
+c6.x=c.x-17.07*katsayi
+set cz7 =  .MakeLine(c5,c6, 0, 0, 0)
+.addobject(cz7)
+
+c7.y=c.y+21.62*katsayi
+c7.x=c.x
+c8.y=c.y+21.62*katsayi
+c8.x=c.x-31.29*katsayi
+set cz8 =  .MakeLine(c7,c8, 0, 0, 0)
+.addobject(cz8)
+
+c7.y=c.y+55.41*katsayi
+c7.x=c.x
+c8.y=c.y+55.41*katsayi
+c8.x=c.x-31.29*katsayi
+set cz9 =  .MakeLine(c7,c8, 0, 0, 0)
+.addobject(cz9)
+
+c7.y=c.y+70.27*katsayi
+c7.x=c.x
+c8.y=c.y+70.27*katsayi
+c8.x=c.x-31.29*katsayi
+set cz10 =  .MakeLine(c7,c8, 0, 0, 0)
+.addobject(cz10)
+
+c7.y=c.y+85.14*katsayi
+c7.x=c.x
+c8.y=c.y+85.14*katsayi
+c8.x=c.x-31.29*katsayi
+set cz11 =  .MakeLine(c7,c8, 0, 0, 0)
+.addobject(cz11)
+
+'Yazýlar oluþturulup belirli koordinatlara yazdýrýlýyor
+set c9 = .newc(0,0,0)
+c9.y=c.y+3*katsayi
+c9.x=c.x-3*katsayi
+set yz1 = .maketext(c9,"Ada/Parsel",0,0,yzby,0,"1",0)
+.addobject(yz1)
+
+c9.y=c.y+24.62*katsayi
+c9.x=c.x-3*katsayi
+set yz2 = .maketext(c9,"Noktalar",0,0,yzby,0,"1",0)
+.addobject(yz2)
+
+c9.y=c.y+57.41*katsayi
+c9.x=c.x-3*katsayi
+set yz3 = .maketext(c9,"HesapAlan",0,0,yzby,0,"1",0)
+.addobject(yz3)
+
+c9.y=c.y+73.27*katsayi
+c9.x=c.x-3*katsayi
+set yz4 = .maketext(c9,"Düzeltme",0,0,yzby,0,"1",0)
+.addobject(yz4)
+
+c9.y=c.y+88.14*katsayi
+c9.x=c.x-3*katsayi
+set yz5 = .maketext(c9,"TapuAlan",0,0,yzby,0,"1",0)
+.addobject(yz5)
+
+'-----
+
+c9.y=c.y+3*katsayi
+c9.x=c.x-8.69*katsayi
+set yz6 = .maketext(c9,BD.ValueByName("alanadaparsel"),0,0,yzby,0,"1",0)
+.addobject(yz6)
+
+c9.y=c.y+24.62*katsayi
+c9.x=c.x-8.69*katsayi
+set yz7 = .maketext(c9,noktalar,0,0,yzby,0,"1",0)
+.addobject(yz7)
+
+c9.y=c.y+69.27*katsayi
+c9.x=c.x-8.69*katsayi
+set yz8 = .maketext(c9,hesapalani,0,0,yzby,0,"5",0)
+.addobject(yz8)
+
+c9.y=c.y+84.14*katsayi
+c9.x=c.x-8.69*katsayi
+set yz9 = .maketext(c9,mfark,0,0,yzby,0,"5",0)
+.addobject(yz9)
+
+c9.y=c.y+99*katsayi
+c9.x=c.x-8.69*katsayi
+set yz10 = .maketext(c9,tapualani,0,0,yzby,0,"5",0)
+.addobject(yz10)
+
+'----
+
+c9.y=c.y+69.27*katsayi
+c9.x=c.x-14.38*katsayi
+set yz11 = .maketext(c9,hesapalani,0,0,yzby,0,"5",0)
+.addobject(yz11)
+
+c9.y=c.y+84.14*katsayi
+c9.x=c.x-14.38*katsayi
+set yz12 = .maketext(c9,mfark,0,0,yzby,0,"5",0)
+.addobject(yz12)
+
+c9.y=c.y+99*katsayi
+c9.x=c.x-14.38*katsayi
+set yz13 = .maketext(c9,tapualani,0,0,yzby,0,"5",0)
+.addobject(yz13)
+
+'----
+
+c9.y=c.y+3*katsayi
+c9.x=c.x-20.07*katsayi
+set yz14 = .maketext(c9,"Hesap Alaný",0,0,yzby,0,"1",0)
+.addobject(yz14)
+
+c9.y=c.y+3*katsayi
+c9.x=c.x-23.07*katsayi
+set yz14 = .maketext(c9,"Tapu Alaný",0,0,yzby,0,"1",0)
+.addobject(yz14)
+
+c9.y=c.y+3*katsayi
+c9.x=c.x-26.07*katsayi
+set yz14 = .maketext(c9,"Fark",0,0,yzby,0,"1",0)
+.addobject(yz14)
+
+c9.y=c.y+3*katsayi
+c9.x=c.x-29.07*katsayi
+set yz14 = .maketext(c9,"Tecviz",0,0,yzby,0,"1",0)
+.addobject(yz14)
+
+'----
+
+c9.y=c.y+54*katsayi
+c9.x=c.x-20.07*katsayi
+set yz15 = .maketext(c9,hesapalani,0,0,yzby,0,"5",0)
+.addobject(yz15)
+
+c9.y=c.y+54*katsayi
+c9.x=c.x-23.07*katsayi
+set yz15 = .maketext(c9,tapualani,0,0,yzby,0,"5",0)
+.addobject(yz15)
+
+c9.y=c.y+54*katsayi
+c9.x=c.x-26.07*katsayi
+set yz15 = .maketext(c9,mfark,0,0,yzby,0,"5",0)
+.addobject(yz15)
+
+c9.y=c.y+54*katsayi
+c9.x=c.x-29.07*katsayi
+set yz15 = .maketext(c9,tecviz,0,0,yzby,0,"5",0)
+.addobject(yz15)
+end if
+
+'!!!! son ÞABLON ÇIKTILARINI EKRANA ALMAK ÝÇÝN BU KOD YAPISI KULLANILACAK son !!!
+end if
+
+set BD = Nothing
+end if		
+end with
+End Sub

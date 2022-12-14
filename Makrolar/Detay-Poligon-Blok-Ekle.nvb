@@ -1,0 +1,19 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Tusaga Detay/Poligon Þablonlarýnýn Projeye Blok Olarak Eklenmesi
+
+Sub Main
+dim blok,DL
+with Netcad
+
+set DL = Netcad.NewBDialog("Detay/Poligon Þablon Ekleme")
+DL.GetRadio "grkmsecim", "Eklemek Ýstediðiniz Þablonu Seçiniz :", "Detay Þablon Ekle|Poligon Þablon Ekle", 0
+	if DL.showmodal then
+		if DL.ValueByName("grkmsecim")=0 Then blok = "PLACE_BLOCK_FILE C:\sgorkemtabak\Kliþeler\tusaga-detay-ÞABLON.NCZ"
+		if DL.ValueByName("grkmsecim")=1 Then blok = "PLACE_BLOCK_FILE C:\sgorkemtabak\Kliþeler\tusaga-poligon-ÞABLON.NCZ"
+	.NetcadCommand blok
+	end if
+
+set DL = nothing
+
+end with
+End Sub

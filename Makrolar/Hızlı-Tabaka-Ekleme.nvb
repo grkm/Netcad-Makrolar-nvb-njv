@@ -1,0 +1,22 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Hýzlý Tabaka Ekleme 
+
+Sub Main
+with NCLayerManager
+.Add "@ALIM",67
+.Add "ALIM_BINA", 67
+.Add "ALIM_NOKTA", 4
+.Add "ALIM_HAT", 21
+.Add "RÖPER", 98
+.Add "BÝNATARAMA", 85
+.Add "DAÝRE", 1
+.Add "@TK", 3
+.Add "TK_ALAN", 10
+.Add "TK_PARSEL", 10
+.Add "TK_HAT", 232
+.Add "TK_NOKTA", 17
+.Add "TK_DUVAR", 13
+.Add "TK_BINA", 111
+.Add "YAZI", 4
+end with
+End Sub

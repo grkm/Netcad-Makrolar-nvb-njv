@@ -1,0 +1,32 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak 
+' Tüm Tabakalarý Açar
+
+SUB Main
+DIM i,oo
+DIM t()
+
+With netcad
+  ReDim t(.NumLayers)
+
+  For i=0 to .NumLayers-1        't() ye tabakalarý doldur
+    t(i)=i
+  Next
+
+  For i=0 to .NumLayers-1        'Tüm tabakalarý aç
+    .OpenLayer i
+  Next
+
+  .SetFilter .GetCurrentWindow, t, array()  'Objeleri ekrana çiz
+    Do
+      set oo = .GetNextObject
+      if oo is nothing then
+        exit do
+      else
+        .drawobject oo, -1
+      end if
+    Loop
+  .FastRedraw
+  .ResetFilter
+
+End With
+END SUB

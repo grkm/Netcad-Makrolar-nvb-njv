@@ -1,0 +1,11 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Proje Temizleme
+
+Sub Main
+Dim c
+with Netcad
+.setmessage "Proje Temizleniyor"
+.NetcadCommand "PROJECT CLEAN 1,1,1,1,1"
+.setmessage "Temizleme Tamamlandý"
+end with
+end sub

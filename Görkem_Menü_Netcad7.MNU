@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-16"?>
+<ArrayOfUserMenu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <UserMenu>
+    <ID>900</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Örnek-Hýzlý-Dönüþüm.nvb</ExecutedFile>
+    <ButtonName>Örnek Dönüþüm</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Örnek-Hýzlý-Dönüþüm.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>901</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Megsisden-Bilgi-Giriþi.nvb</ExecutedFile>
+    <ButtonName>Megsis'den Bilgi Al</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Megsisden-Bilgi-Giriþi.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>902</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Detay-Poligon-Blok-Ekle.nvb</ExecutedFile>
+    <ButtonName>Detay-Poligon Blok Ekle</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Detay-Poligon-Blok-Ekle.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>903</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Detay-ve-Poligon-Çýktýsý-Þablon.njv</ExecutedFile>
+    <ButtonName>Detay-Poligon Þablon Aç</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Detay-ve-Poligon-Çýktýsý-Þablon.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>904</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Detay-ve-Poligon-Çýktýsý-Alma.nvb</ExecutedFile>
+    <ButtonName>Detay-Poligon Seçimli</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Detay-ve-Poligon-Çýktýsý-Alma.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>905</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Koordinat-Çýktýsý-Alma.nvb</ExecutedFile>
+    <ButtonName>Koordinat Çýktýsý Alma</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Koordinat-Çýktýsý-Alma.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>906</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Koordinat-Çýktýsý-Alma-MK.nvb</ExecutedFile>
+    <ButtonName>Koordinat Çýktýsý MK</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Koordinat-Çýktýsý-Alma-MK.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>907</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Seçilen-Noktayý-Parsel-Sorguda-Aç.nvb</ExecutedFile>
+    <ButtonName>Parsel Sorgulamada Aç</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Seçilen-Noktayý-Parsel-Sorguda-Aç.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>908</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Tüm-Yakalama-Modlarýný-Kapat.nvb</ExecutedFile>
+    <ButtonName>Tüm Yakalama Modlarýný Kapat</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Tüm-Yakalama-Modlarýný-Kapat.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>909</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Seçilenin-Tabakasýný-Sil.nvb</ExecutedFile>
+    <ButtonName>Tabaka Yok Et</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Seçilenin-Tabakasýný-Sil.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>910</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Hizalama-Dikey.nvb</ExecutedFile>
+    <ButtonName>Yazý Hizalama DÝKEY</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Hizalama-Dikey.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>911</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Hizalama-Yatay.nvb</ExecutedFile>
+    <ButtonName>Yazý Hizalama YATAY</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Hizalama-Yatay.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>912</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Logo.nvb</ExecutedFile>
+    <ButtonName>Logo Ekle</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Logo.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>913</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Zemin-Tespit-Tutanaðý-Ek-1-Kliþe-Blok.nvb</ExecutedFile>
+    <ButtonName>ZTT Ek-1 Blok</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Zemin-Tespit-Tutanaðý-Ek-1-Kliþe-Blok.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>914</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Zemin-Tespit-Tutanaðý-Ek-2-Kliþe-Blok.nvb</ExecutedFile>
+    <ButtonName>ZTT Ek-2 Blok</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Zemin-Tespit-Tutanaðý-Ek-2-Kliþe-Blok.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>915</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Zemin-Tespit-Tutanaðý-Ek-1-Kliþe.njv</ExecutedFile>
+    <ButtonName>ZTT Ek-1 Aç</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Zemin-Tespit-Tutanaðý-Ek-1-Kliþe.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>916</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Zemin-Tespit-Tutanaðý-Ek-2-Kliþe.njv</ExecutedFile>
+    <ButtonName>ZTT Ek-2 Aç</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Zemin-Tespit-Tutanaðý-Ek-2-Kliþe.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>917</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Zemin-Tespit-Tutanaðý-Bilgi-Giriþi.nvb</ExecutedFile>
+    <ButtonName>ZTT Bilgi Giriþ</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Zemin-Tespit-Tutanaðý-Bilgi-Giriþi.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>918</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Yazý-Boyunu-0-9-Kat-Küçültme.nvb</ExecutedFile>
+    <ButtonName>0.9 Boy küçültme</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Yazý-Boyunu-0-9-Kat-Küçültme.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>919</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Yazý-Eþitleme.nvb</ExecutedFile>
+    <ButtonName>Yazý Kopyalama</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Yazý-Eþitleme.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>920</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Yazý-Boyu-Eþitle.nvb</ExecutedFile>
+    <ButtonName>Boy Eþitleme</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Yazý-Boyu-Eþitle.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>921</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Yazý-Açý-Eþitle.nvb</ExecutedFile>
+    <ButtonName>Açý Eþitleme</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Yazý-Açý-Eþitle.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>922</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Seçilen-Tabakayý-Kapat.nvb</ExecutedFile>
+    <ButtonName>Seçilen Tabakayý Kapat</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Seçilen-Tabakayý-Kapat.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>923</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Seçilen-Tabaka-Dýþýnda-Kapat.nvb</ExecutedFile>
+    <ButtonName>Seçilen Tabaka Dýþýnda Kapat</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Seçilen-Tabaka-Dýþýnda-Kapat.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>924</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Tüm-Tabakalarý-Aç.nvb</ExecutedFile>
+    <ButtonName>Tüm Tabakalarý Aç</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Tüm-Tabakalarý-Aç.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>925</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Tabakalarýn-Rengini-Deðiþtirme.nvb</ExecutedFile>
+    <ButtonName>Tüm Tabaka Renklerini Deðiþtir</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Tabakalarýn-Rengini-Deðiþtirme.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>926</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Tabaka-Eþitleme.nvb</ExecutedFile>
+    <ButtonName>Tabaka Eþitleme</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Tabaka-Eþitleme.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>927</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Proje-Temizleme.nvb</ExecutedFile>
+    <ButtonName>Proje Temizleme</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Proje-Temizleme.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>928</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Hýzlý-Yazý-Boyu-Deðiþtir.nvb</ExecutedFile>
+    <ButtonName>Hýzlý Boy Deðiþtirme</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Hýzlý-Yazý-Boyu-Deðiþtir.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>929</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Hýzlý-Projeksiyon-Tanýmlama-UTM3-ITRF96-36.nvb</ExecutedFile>
+    <ButtonName>ITRF Projeksiyon</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Hýzlý-Projeksiyon-Tanýmlama-UTM3-ITRF96-36.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>930</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Hýzlý-Projeksiyon-Tanýmlama-UTM3-ED50-36.nvb</ExecutedFile>
+    <ButtonName>ED50 Projeksiyon </ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Hýzlý-Projeksiyon-Tanýmlama-UTM3-ED50-36.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>931</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Hýzlý-NCN-Kaydet.nvb</ExecutedFile>
+    <ButtonName>Hýzlý NCN Kaydet</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Hýzlý-NCN-Kaydet.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>932</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Hýzlý-Geniþlik-Çarpaný-Deðiþtir.nvb</ExecutedFile>
+    <ButtonName>Hýzlý Geniþlik Çarpaný Deðiþtirme</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Hýzlý-Geniþlik-Çarpaný-Deðiþtir.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>933</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Hýzlý-Daire-Çapý-Deðiþtir.nvb</ExecutedFile>
+    <ButtonName>Hýzlý Daire Çapý Deðiþtirme</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Hýzlý-Daire-Çapý-Deðiþtir.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>934</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Hýzlý-Yazý-Deðiþtir.nvb</ExecutedFile>
+    <ButtonName>Hýzlý Yazý Deðiþtirme</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Hýzlý-Yazý-Deðiþtir.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>935</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Hatlara-Paralel-Hýzlý-Yazý-Yazdýrma.nvb</ExecutedFile>
+    <ButtonName>Hatlara Paralel Hýzlý Yazý</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Hatlara-Paralel-Hýzlý-Yazý-Yazdýrma.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>936</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Geniþlik-Çarpaný-Eþitle.nvb</ExecutedFile>
+    <ButtonName>Geniþlik Çarpaný Eþitleme</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Geniþlik-Çarpaný-Eþitle.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>937</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Daire-Çapý-Eþitle.nvb</ExecutedFile>
+    <ButtonName>Daire Çapý Eþitleme</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Daire-Çapý-Eþitle.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>938</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Alan-Tablosu-Otomatik-Çýkartma.nvb</ExecutedFile>
+    <ButtonName>Alan Tablosu Elle</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Alan-Tablosu-Otomatik-Çýkartma.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>939</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Boþ-Sayfa.njv</ExecutedFile>
+    <ButtonName>Boþ Sayfa Aç</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Boþ-Sayfa.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  <UserMenu>
+    <ID>940</ID>
+    <ExecutedFile>C:\sgorkemtabak\Makrolar\Hýzlý-Tabaka-Ekleme.nvb</ExecutedFile>
+    <ButtonName>Tabaka Ekle</ButtonName>
+    <RibbonName>GRKM</RibbonName>
+    <GroupName>GRKM</GroupName>
+    <IconFile>C:\sgorkemtabak\Makrolar\Hýzlý-Tabaka-Ekleme.bmp</IconFile>
+    <ButtonViewIndex>2</ButtonViewIndex>
+    <Priority>0</Priority>
+  </UserMenu>
+  
+</ArrayOfUserMenu>

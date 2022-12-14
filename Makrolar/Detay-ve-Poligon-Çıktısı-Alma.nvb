@@ -1,0 +1,393 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Tusaga Çýktýlarýný Netcad Projesi üzerinden seçilen noktalardan oluþturan makro örneði
+
+Sub Main
+Dim Transformer,BD,secim,sonuc
+Dim ss,item,a,i,j,m,n,secimm,c,yi,yid,xi,xid,zi,noi,koorx,koory,yaz1,yaz2,yaz3,yaz4,asilyazi,aralikx,araliky,kx,ky,ky2
+Dim zaman,epok,uydu,rms,pdop,faz,veri,z,vrs,tarih,oturum,ekleme1,yi2,xi2
+Dim max,min,zarat,zarat2,gun
+Dim ciz1,ciz2,ciz3,ciz4,ciz5,ciz6,ciz7,ciz8,ciz9,ciz10,ciz11,ciz12,ciz13,ciz14,ciz15,ciz16,ciz17,ciz18,ciz20
+with Netcad
+
+set BD = Netcad.NewBDialog("Tusaga Çýktý Alma Menüsü")
+
+BD.Getcombo "secim","Ýþlem Seçiniz : ","Detay Noktalarý|Poligon Noktalarý" ,0
+BD.PutPrompt "Lütfen Gün ve Saat Giriþlerini Belirtilen Formatlarda Giriniz..."
+BD.Getstring "secimgun","Gün Gir: ",date,50
+BD.Getstring "secimsaat","Saat Gir: ",time,50
+
+if BD.showmodal then
+
+if BD.ValueByName("secim")=0 then
+'DETAY NOKTALARININ ÇIKTILARINI ALMAK ÝÇÝN BU KOD YAPISI KULLANILACAK 
+
+item = 1
+
+set ss = .NewSelectionSet 'küme yaratma
+set a = .NewObject
+if ss.SELECT("Noktalarý Seç",array(opoint)) then 'noktalarý kümeye ekleme
+
+set secimm = .NewSelectStatus()
+set c = .newc(0,0,0)
+'tarih=date+time
+gun=BD.ValueByName("secimgun")
+tarih=BD.ValueByName("secimgun")+" "+BD.ValueByName("secimsaat")
+
+'çýktýnýn yerleþtirileceði alaný seç
+if .SelectPoint("Tablonun Yerleþtirileceði Yeri Seçiniz", c, 2) then
+ky=c.y+item*2
+'çýktýnýn yerleþtirileceði alaný seç SON
+
+for i = 0 to ss.NE-1 'kumenin her bir elemani icin
+j = ss.GetSelectedObject(i, a) ' objeyi ve gercek indeksini al
+c.y=ky
+'yi=FormatNumber(a.p1.y,2,,,vbFalse)
+'xi=FormatNumber(a.p1.x,2,,,vbFalse)
+zi=FormatNumber(a.p1.z,2,,,vbFalse)
+yi=round(a.p1.y,2)
+xi=round(a.p1.x,2)
+noi=a.pname
+
+aralikx=item+item*0.6+item/2
+araliky=item*6
+
+koorx=c.x
+koory=c.y
+
+c.x=koorx-(aralikx)
+set yaz1 = .maketext(c,noi,0,0,item,0,"1",0)
+.addobject(yaz1)
+c.y=koory+araliky*1.2
+max=35
+min=5
+Randomize
+zarat=Int((max-min+1)*Rnd+min)
+tarih=DateAdd("s",zarat,tarih)
+max=3.1
+min=0.6
+Randomize
+zarat=Int((max-min+1)*Rnd+min)
+tarih=DateAdd("n",zarat,tarih)
+set zaman = .maketext(c,tarih,0,0,item,0,"1",0)
+.addobject(zaman)
+c.y=koory+(araliky*4)
+set epok = .maketext(c,"5",0,0,item,0,"1",0)
+.addobject(epok)
+c.y=koory+(araliky*5.2)
+set veri = .maketext(c,"1",0,0,item,0,"1",0)
+.addobject(veri)
+c.y=koory+(araliky*6.6)
+max=13
+min=8
+Randomize
+zarat=Int((max-min+1)*Rnd+min)
+set uydu = .maketext(c,zarat,0,0,item,0,"1",0)
+.addobject(uydu)
+c.y=koory+(araliky*7.7)
+max=0.020
+min=0.002
+Randomize
+zarat=((max-min)*Rnd+min)
+zarat=FormatNumber(zarat,3,,,vbFalse)
+set rms = .maketext(c,zarat,0,0,item,0,"1",0)
+.addobject(rms)
+c.y=koory+(araliky*8.8)
+max=1.99
+min=1.49
+Randomize
+zarat=((max-min)*Rnd+min)
+zarat=FormatNumber(zarat,3,,,vbFalse)
+set pdop = .maketext(c,zarat,0,0,item,0,"1",0)
+.addobject(pdop)
+
+c.y=koory+(araliky*10)
+set faz = .maketext(c,"FIXED",0,0,item,0,"1",0)
+.addobject(faz)
+
+c.y=koory+(araliky*11.3)
+set vrs = .maketext(c,"VRSCMRP",0,0,item,0,"1",0)
+.addobject(vrs)
+c.y=koory+(araliky*13.2)
+max=0.03
+min=0
+Randomize
+zarat=((max-min)*Rnd+min)
+zarat=round(zarat,2)
+yid=yi+zarat
+yid=FormatNumber(yid,2,,,vbFalse)
+set yaz2 = .maketext(c,yid,0,0,item,0,"1",0)
+.addobject(yaz2)
+c.y=koory+(araliky*15.6)
+max=0.03
+min=0
+Randomize
+zarat=((max-min)*Rnd+min)
+zarat=round(zarat,2)
+xid=xi+zarat
+xid=FormatNumber(xid,2,,,vbFalse)
+set yaz3 = .maketext(c,xid,0,0,item,0,"1",0)
+.addobject(yaz3)
+c.y=koory+(araliky*18.2)
+set yaz4 = .maketext(c,zi,0,0,item,0,"1",0)
+.addobject(yaz4)
+
+'.putobject j, a ' objeyi geri koy seçilen objeleri siliyor
+ next
+ end if
+ ss.RedrawAndRewind ' secimm kumesini toplu kendi renginde
+
+ end if ' cizdir ve kumeyi basa sardir.
+ set ss = nothing
+ set a = nothing
+
+'!!!! son DETAY NOKTALARININ ÇIKTILARINI ALMAK ÝÇÝN BU KOD YAPISI KULLANILACAK son !!!!
+end if	
+
+if BD.ValueByName("secim")=1 then 
+'POLÝGON NOKTALARININ ÇIKTILARINI ALMAK ÝÇÝN BU KOD YAPISI KULLANILACAK 
+
+item = 1
+
+set ss = .NewSelectionSet 'küme yaratma
+set a = .NewObject
+if ss.SELECT("Noktalarý Seç",array(opoint)) then 'noktalarý kümeye ekleme
+
+set secim = .NewSelectStatus()
+set c = .newc(0,0,0)
+tarih=BD.ValueByName("secimgun")+" "+BD.ValueByName("secimsaat")
+
+'çýktýnýn yerleþtirileceði alaný seç
+if .SelectPoint("Tablonun Yerleþtirileceði Yeri Seçiniz", c, 2) then
+ky=c.y+item*2
+ky2=c.y+item*2
+kx=c.x
+'çýktýnýn yerleþtirileceði alaný seç SON
+
+for i = 0 to ss.NE-1 'kumenin her bir elemani icin
+j = ss.GetSelectedObject(i, a) ' objeyi ve gercek indeksini al
+c.y=ky
+c.y=ky2
+yi=FormatNumber(a.p1.y,2,,,vbFalse)
+yi2=FormatNumber(a.p1.y,2,,,vbFalse)
+xi=FormatNumber(a.p1.x,2,,,vbFalse)
+xi2=FormatNumber(a.p1.x,2,,,vbFalse)
+zi=FormatNumber(a.p1.z,2,,,vbFalse)
+'yi=round(a.p1.y,2)
+'xi=round(a.p1.x,2)
+noi=a.pname
+
+'1. Oturum Ekran Çýktýlarý
+aralikx=item+item*0.6+item/2
+araliky=item*6
+
+koorx=c.x
+koory=c.y
+
+c.x=koorx-(aralikx)
+set yaz1 = .maketext(c,noi,0,0,item,0,"1",0)
+.addobject(yaz1)
+
+c.y=koory+araliky*1.4
+set oturum = .maketext(c,"1",0,0,item,0,"1",0)
+.addobject(oturum)
+
+c.y=koory+araliky*2.5
+max=35
+min=5
+Randomize
+zarat=Int((max-min+1)*Rnd+min)
+tarih=DateAdd("s",zarat,tarih)
+max=3.1
+min=0.6
+Randomize
+zarat=Int((max-min+1)*Rnd+min)
+tarih=DateAdd("n",zarat,tarih)
+set zaman = .maketext(c,tarih,0,0,item,0,"1",0)
+.addobject(zaman)
+
+c.y=koory+(araliky*5.3)
+set epok = .maketext(c,"10",0,0,item,0,"1",0)
+.addobject(epok)
+
+c.y=koory+(araliky*6.3)
+set veri = .maketext(c,"1",0,0,item,0,"1",0)
+.addobject(veri)
+
+c.y=koory+(araliky*7.8)
+max=13
+min=8
+Randomize
+zarat=Int((max-min+1)*Rnd+min)
+set uydu = .maketext(c,zarat,0,0,item,0,"1",0)
+.addobject(uydu)
+
+c.y=koory+(araliky*9)
+max=0.02
+min=0.002
+Randomize
+zarat=((max-min)*Rnd+min)
+zarat=FormatNumber(zarat,3,,,vbFalse)
+set rms = .maketext(c,zarat,0,0,item,0,"1",0)
+.addobject(rms)
+ekleme1=FormatNumber(zarat,2,,,vbFalse)
+
+c.y=koory+(araliky*10)
+max=1.97
+min=1.49
+Randomize
+zarat=((max-min)*Rnd+min)
+zarat=FormatNumber(zarat,3,,,vbFalse)
+set pdop = .maketext(c,zarat,0,0,item,0,"1",0)
+.addobject(pdop)
+
+c.y=koory+(araliky*11.2)
+set faz = .maketext(c,"FIXED",0,0,item,0,"1",0)
+.addobject(faz)
+
+c.y=koory+(araliky*12.6)
+set vrs = .maketext(c,"VRSCMRP",0,0,item,0,"1",0)
+.addobject(vrs)
+
+c.y=koory+(araliky*14.5)
+yi=CDbl(yi)
+yi=yi+ekleme1
+yi=CStr(yi)
+yi=FormatNumber(yi,2,,,vbFalse)
+set yaz2 = .maketext(c,yi,0,0,item,0,"1",0)
+.addobject(yaz2)
+
+c.y=koory+(araliky*16.8)
+xi=CDbl(xi)
+xi=xi+ekleme1
+xi=CStr(xi)
+xi=FormatNumber(xi,2,,,vbFalse)
+set yaz3 = .maketext(c,xi,0,0,item,0,"1",0)
+.addobject(yaz3)
+
+c.y=koory+(araliky*19.6)
+set yaz4 = .maketext(c,zi,0,0,item,0,"1",0)
+.addobject(yaz4)
+
+c.y=koory+(araliky*21.6)
+c.y=koory+(araliky*23.9)
+c.y=koory+(araliky*26.8)
+
+'
+'2. Oturum Ekran Çýktýlarý
+'
+
+aralikx=item+item*0.6+item/2
+araliky=item*6
+
+koorx=c.x
+koory=ky2
+
+c.x=koorx-(aralikx)
+c.y=koory+araliky*1.4
+set oturum = .maketext(c,"2",0,0,item,0,"1",0)
+.addobject(oturum)
+
+c.y=koory+araliky*2.5
+max=35
+min=5
+Randomize
+zarat=Int((max-min+1)*Rnd+min)
+tarih=DateAdd("s",zarat,tarih)
+max=3.1
+min=0.6
+Randomize
+zarat=Int((max-min+1)*Rnd+min)
+tarih=DateAdd("n",zarat,tarih)
+set zaman = .maketext(c,tarih,0,0,item,0,"1",0)
+.addobject(zaman)
+
+c.y=koory+(araliky*5.3)
+set epok = .maketext(c,"10",0,0,item,0,"1",0)
+.addobject(epok)
+
+c.y=koory+(araliky*6.3)
+set veri = .maketext(c,"1",0,0,item,0,"1",0)
+.addobject(veri)
+max=13
+min=8
+Randomize
+zarat=Int((max-min+1)*Rnd+min)
+c.y=koory+(araliky*7.8)
+set uydu = .maketext(c,zarat,0,0,item,0,"1",0)
+.addobject(uydu)
+
+c.y=koory+(araliky*9)
+max=0.02
+min=0.002
+Randomize
+zarat=((max-min)*Rnd+min)
+zarat=FormatNumber(zarat,3,,,vbFalse)
+set rms = .maketext(c,zarat,0,0,item,0,"1",0)
+.addobject(rms)
+
+c.y=koory+(araliky*10)
+max=1.95
+min=1.49
+Randomize
+zarat=((max-min)*Rnd+min)
+zarat=FormatNumber(zarat,3,,,vbFalse)
+set pdop = .maketext(c,zarat,0,0,item,0,"1",0)
+.addobject(pdop)
+
+c.y=koory+(araliky*11.2)
+set faz = .maketext(c,"FIXED",0,0,item,0,"1",0)
+.addobject(faz)
+
+c.y=koory+(araliky*12.6)
+set vrs = .maketext(c,"VRSCMRP",0,0,item,0,"1",0)
+.addobject(vrs)
+
+c.y=koory+(araliky*14.5)
+yi=CDbl(yi2)
+yi=yi-ekleme1
+yi=CStr(yi)
+yi=FormatNumber(yi,2,,,vbFalse)
+set yaz2 = .maketext(c,yi,0,0,item,0,"1",0)
+.addobject(yaz2)
+
+c.y=koory+(araliky*16.8)
+xi=CDbl(xi2)
+xi=xi-ekleme1
+xi=CStr(xi)
+xi=FormatNumber(xi,2,,,vbFalse)
+set yaz3 = .maketext(c,xi,0,0,item,0,"1",0)
+.addobject(yaz3)
+
+c.y=koory+(araliky*19.6)
+set yaz4 = .maketext(c,zi,0,0,item,0,"1",0)
+.addobject(yaz4)
+
+c.y=koory+(araliky*21.6)
+set yaz2 = .maketext(c,yi2,0,0,item,0,"1",0)
+.addobject(yaz2)
+
+c.y=koory+(araliky*23.9)
+set yaz3 = .maketext(c,xi2,0,0,item,0,"1",0)
+.addobject(yaz3)
+
+c.y=koory+(araliky*26.8)
+set yaz4 = .maketext(c,zi,0,0,item,0,"1",0)
+.addobject(yaz4)
+
+
+
+'.putobject j, a ' objeyi geri koy seçilen objeleri siliyor
+ next
+ end if
+ ss.RedrawAndRewind ' secim kumesini toplu kendi renginde
+
+ end if ' cizdir ve kumeyi basa sardir.
+ set ss = nothing
+ set a = nothing
+'!!!! son POLÝGON NOKTALARININ ÇIKTILARINI ALMAK ÝÇÝN BU KOD YAPISI KULLANILACAK son !!!
+end if	
+
+set BD = Nothing
+end if		
+end with
+End Sub

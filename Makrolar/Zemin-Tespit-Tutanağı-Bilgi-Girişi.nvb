@@ -1,0 +1,59 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Kliþeler içinde verilen Zemin Tespit Tutanaðý NCZ Dosyasýndaki verileri hýzlý bir þekilde deðiþtirmenizi saðlar
+
+Sub Main
+Dim obj
+dim bd
+dim sonuc
+with Netcad
+set BD = Netcad.NewBDialog("Þablon Verilerini Düzenleme")
+BD.PutPrompt " >>   Zemin Tespit Tutanaðý içindir   ________"
+BD.PutPrompt ""
+BD.Getstring "grkmilce","Ýlçe: ","<ÝLÇE>",50
+BD.Getstring "grkmmahalle","Mahalle: ","<MAHALLE>",50
+BD.Getstring "grkmpafta","Pafta 1: ","<PFT>",50
+BD.Getstring "grkmpaftaitrf","Pafta ITRF: ","<PFTITRF>",50
+BD.Getstring "grkmada","Ada: ","<ADA>",50
+BD.Getstring "grkmparsel","Parsel: ","<PRSL1>",50
+BD.Getstring "grkmas1","Tapu Alaný Tam 1: ","<AL11>",50
+BD.Getstring "grkmas2","Tapu Alaný Ondalýk 1: ","<AL12>",50
+BD.Getstring "grkmalan","Tapu Alaný: ","<ALAN1>",50
+BD.Getstring "grkmtarih","Tarih: ","<TARÝH2>",50
+BD.Getstring "grkmkutuk","Kütük Sahife No: ","<KTK1>",50
+BD.Getstring "grkmmalik","Tapu Malik: ","<MALÝK1>",50
+BD.Getstring "grkmtcno","Malik Tc No: ","<TCNO>",50
+BD.Getstring "grkmecinsi","Cins Ýlk: ","<CÝNS>",50
+BD.Getstring "grkmcinss1","Cins Son Satýr 1: ","<CÝNS1>",50
+BD.Getstring "grkmcinss2","Cins Son Satýr 2: ","<CÝNS2>",50
+BD.PutPrompt "_____________________________________________________"
+if BD.showmodal then
+.setfilter nothing, array(),array(otext)
+do
+set obj=.getnextobject
+if obj is nothing then
+exit do
+else
+obj.s=replace(obj.s,"<ÝLÇE>",BD.ValueByName("grkmilce"))
+obj.s=replace(obj.s,"<MAHALLE>",BD.ValueByName("grkmmahalle"))
+obj.s=replace(obj.s,"<PFT>",BD.ValueByName("grkmpafta"))
+obj.s=replace(obj.s,"<PFTITRF>",BD.ValueByName("grkmpaftaitrf"))
+obj.s=replace(obj.s,"<ADA>",BD.ValueByName("grkmada"))
+obj.s=replace(obj.s,"<PRSL1>",BD.ValueByName("grkmparsel"))
+obj.s=replace(obj.s,"<ALAN1>",BD.ValueByName("grkmalan"))
+obj.s=replace(obj.s,"<AL11>",BD.ValueByName("grkmas1"))
+obj.s=replace(obj.s,"<AL12>",BD.ValueByName("grkmas2"))
+obj.s=replace(obj.s,"<TARÝH2>",BD.ValueByName("grkmtarih"))
+obj.s=replace(obj.s,"<KTK1>",BD.ValueByName("grkmkutuk"))
+obj.s=replace(obj.s,"<MALÝK1>",BD.ValueByName("grkmmalik"))
+obj.s=replace(obj.s,"<CÝNS>",BD.ValueByName("grkmecinsi"))
+obj.s=replace(obj.s,"<CÝNS1>",BD.ValueByName("grkmcinss1"))
+obj.s=replace(obj.s,"<CÝNS2>",BD.ValueByName("grkmcinss2"))
+obj.s=replace(obj.s,"<TCNO>",BD.ValueByName("grkmtcno"))
+end if
+.PUTOBJECT .CUROBJPOS,OBJ
+loop
+.resetfilter
+end if
+sonuc=Msgbox("Ýþlem Tamamlandý",vbInformation, "Salih Görkem TABAK")
+end with
+End Sub

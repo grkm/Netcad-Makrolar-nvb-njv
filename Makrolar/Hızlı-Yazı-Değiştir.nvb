@@ -1,0 +1,30 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Hýzlý Yazý Deðiþtirme
+
+Sub Main
+Dim d,ss,b,h,a
+
+with netcad
+
+  set ss = .NewSelectStatus
+  .SelectObjectInstant "Deðiþtirilecek Yazýyý Seç.",1,array(),ss
+  set b = ss.objects(0) 
+  set a = ss.objects(0)
+  set d = Netcad.NewBDialog("Hýzlý Yazý Deðiþtir")
+  d.GetString  "h","Bir Yazi Girin", b.s, 55
+
+  if d.showmodal then
+	a.s = d.ValueByName("h")
+	b.s = a.s
+	.PutObject ss.indexs(0), b
+    .DrawObject b,-1
+  end if
+  
+    set d = Nothing
+    set ss = nothing
+    set b = nothing
+    set h = nothing
+	
+end with
+
+End sub

@@ -1,0 +1,18 @@
+* Netcad Açıksa Kapatın
+
+* C: Klasörü içine "sgorkemtabak" adlı bir klasör oluşturun.
+
+* "Dönüşümler" - "Klişer" - "Makrolar" Klasörlerini bu "sgorkemtabak" klasörü içine kopyalayın
+
+* samsun_mahalle_id.csv dosyasını "sgorkemtabak" klasörü içine kopyalayın
+
+* MNU Dosyalarını
+  
+  * Netcad 5 için; "Görkem_Menü_Netcad5.MNU" dosyasını
+    "C:\NETCAD\MODUL\NCMACRO" Klasörü içine kopyalayın
+
+  * Netcad 6-7-8 için; "Görkem_Menü_Netcad7.MNU" dosyasını
+    "C:\Netcad7\MODUL" Klasörü içine kopyalayın
+
+* Menüler Netcade eklenmiştir
+  

@@ -1,0 +1,18 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Seçilen Objeyi ve o tabakadaki tüm objeleri siler NOT: Geri Dönüþü Olmayacak Bir Þekilde!!!
+
+SUB Main
+DIM obj,selSET
+With netcad
+    set selSET = .NewSelectStatus()
+    .SetCurrentLayer .FoundLayer("0")
+    while .SelectObjectInstant("Tabakasý SÝLÝNECEK Objeyi Seçiniz:::",1,array(),selSET)
+        set obj = .newobject()
+        set obj = selSET.objects(0)
+        nclayermanager.delete obj.tabaka,true
+        set obj = nothing
+        .NETCADCOMMAND ("REGEN")
+    wend
+    set selSET = nothing
+End With
+END SUB

@@ -1,0 +1,9 @@
+// Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+// Netcad Projesi Açma Hýzlý Örnek Kod
+
+function Main() {
+  with (Netcad) {
+    // Dizine DIKKAT edin ! Javada Duz Slash "/" kullanmaniz lazim.
+    LoadFile('C://sgorkemtabak/Kliþeler/Zemin-Tespit-Tutanaðý-Ek-1-Kliþe.NCZ', fs_bnetcad);
+  }
+}

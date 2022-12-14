@@ -1,0 +1,50 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak 
+' Ekrandan seçilen objenin bulunduðu tabaka haricindeki tabakalar kapatýlýr.
+
+SUB Main
+DIM ss,o,i,j,oo,p,sel
+DIM kt() ,t()
+
+With netcad
+  ReDim kt(.NumLayers)
+  ReDim t(.NumLayers)
+  set SEL = .NewSelectionSet             ' Yeni kume yarat
+  set o = .NewObject
+  if SEL.SELECT("Obje Seç",array()) then ' istenen turleri kumeye ekle
+    for i = 0 to SEL.NE-1                ' kumenin her bir elemani icin
+      j = SEL.GetSelectedObject(i, o)    ' objeyi geri koy
+      kt(i)= o.tabaka
+    next
+    set ss = nothing
+    set o = nothing               ' obje icin aldigimiz memory'i geri ver
+  end if
+
+  For i=0 to .NumLayers-1        't() ye tabakalarý doldur
+    t(i)=i
+  Next
+
+  For j=0 To SEl.NE-1            'Kapanacak tabakalarýn filtrelerini üret
+    For i=0 to .NumLayers-1
+      if kt(j)=i then t(i)=0
+    Next
+  Next
+
+  For i=0 to .NumLayers-1        'Seçilen obzelerin tabakasýný kapat
+    .CloseLayer t(i)
+  Next
+
+  .SetFilter .GetCurrentWindow, t, array()  'Kapanan objeleri zemin renginde çiz
+    Do
+    set oo = .GetNextObject
+      if oo is nothing then
+        exit do
+      else
+        .drawobject oo, Black
+      end if
+    Loop
+  .FastRedraw
+  .ResetFilter
+
+End With
+END SUB
+

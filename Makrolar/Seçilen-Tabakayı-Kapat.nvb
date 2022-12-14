@@ -1,0 +1,31 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Ekrandan seçilen objenin bulunduðu tabaka kapatýlýr.
+
+SUB Main
+DIM ss,o,i,j,oo,p
+
+With netcad
+    set ss = .NewSelectStatus   ' Anlik Secim objesi yarat
+    while .SelectObjectInstant("Seçtiðiniz objelerin tabakasý kapatýlacaktýr.",1,array(),ss)  ' obje sec
+      set o = ss.objects(0)         ' Secim objesinin ilk objesini al
+      if not(o.tabaka=.GetCurrentLayer) then
+       .SetFilter .GetCurrentWindow, array(o.tabaka), array()          'Filitre uygula
+       Do
+         set oo = .GetNextObject   ' Yukardaki Kurala uyan bir sonraki objeyi getir
+         if oo is nothing then     ' Eger kurala uyan obje kalmadiysa sonuc "nothing" doner
+           exit do                ' Bu durumda donguyu durdur
+         else
+          .drawobject oo, Black   ' objeyi silinmis gibi siyahla ciz
+         end if
+
+       Loop
+        .CloseLayer o.tabaka
+        .FastRedraw
+        else
+          msgbox "aktif tabaka kapatýlamaz"
+      end if
+    wend
+    set ss = nothing
+    set o = nothing               ' obje icin aldigimiz memory'i geri ver
+  End With
+END SUB

@@ -1,0 +1,73 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Hýzlý Koordinat Çýktýsý Alma + MK Deðeri Not: Noktalarýn Netcade Eklenme Sýrasýna Göre Çýktý Vermektedir.
+
+Sub Main
+Dim ss,bd,item,a,i,j,m,n,c,yi,xi,noi,koorx,koory,yaz1,yaz2,yaz3,yazmk,asilyazi,aralikx,araliky,kx,ky
+Dim aralik1,aralik2,aralik3
+
+with netcad
+
+set bd = .newbdialog ("Nokta No Yaz - Parametreler")
+BD.Getfloat "item","Yazý Boyu:",1,3
+if BD.showmodal then
+item = bd.valuebyname ("item")
+end if
+
+'Noktalarýn Seçildiði Bölüm
+set ss = .NewSelectionSet 'küme yaratma
+set a = .NewObject
+if ss.SELECT("Noktalarý Seç",array(opoint)) then 'noktalarý kümeye ekleme
+
+set c = .newc(0,0,0)
+
+'koordinatlarýn yerleþtirileceði alaný seç
+if .SelectPoint("Tablonun Yerleþtirileceði Yeri Seçiniz", c, 2) then
+ky=c.y+item*1.1
+'koordinatlarýn yerleþtirileceði alaný seç SON
+
+for i = 0 to ss.NE-1 'kumenin her bir elemani icin
+j = ss.GetSelectedObject(i, a) ' objeyi ve gercek indeksini al
+c.y=ky
+yi=FormatNumber(a.p1.y,2,,,vbFalse)
+xi=FormatNumber(a.p1.x,2,,,vbFalse)
+noi=a.pname
+
+aralikx=item+item*0.15+item/2
+araliky=item*6
+aralik1=item*17.807
+aralik2=item*27.269
+
+koorx=c.x
+koory=c.y
+
+c.x=koorx-(aralikx)
+'nokta numarasý
+set yaz1 = .maketext(c,noi,0,0,item,0,"1",0)
+.addobject(yaz1)
+
+'y koordinatý doðubatý
+c.y=koory+araliky
+set yaz2 = .maketext(c,yi,0,0,item,0,"1",0)
+.addobject(yaz2)
+
+'x koordinatý güney kuzey
+c.y=koory+aralik1
+set yaz3 = .maketext(c,xi,0,0,item,0,"1",0)
+.addobject(yaz3)
+
+'mk deðeri yazdýrma
+c.y=koory+aralik2
+set yazmk = .maketext(c,"0.21",0,0,item,0,"1",0)
+.addobject(yazmk)
+
+
+next
+end if
+ss.RedrawAndRewind
+
+end if ' cizdir ve kumeyi basa sardir.
+set ss = nothing
+set a = nothing
+
+end with
+End sub

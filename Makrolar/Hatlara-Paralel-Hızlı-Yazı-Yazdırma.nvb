@@ -1,0 +1,76 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Hatlara Paralel Hýzlý Yazý Yaz
+
+Sub Main
+dim mesaj,yolyaz,koordinat,yaziboyu,yaziacisi,yazi
+dim ss,o,bd
+dim c1,c2
+with Netcad
+
+set koordinat = .newc(0,0,0)
+set bd = .newbdialog ("Hat Nesnesine Paralel Hýzlý Yazý Yaz")
+bd.getdistance "grkmyaziboyu","Yazý Boyu : ","1",2
+bd.PutPrompt ""
+bd.getstring "grkmyazi","Yazý : ","Y  O  L",50
+bd.showmodal
+yaziboyu = bd.valuebyname ("grkmyaziboyu")
+yazi = bd.valuebyname ("grkmyazi")
+
+set ss = .NewSelectStatus
+while .SelectObjectInstant ("Açýsý Alýnacak Hat Seç",1,array(oline),ss)
+set o = ss.objects(0)
+if o.p1.y=0 and o.p1.x=0 then exit sub 'Nokta seçilmezse komuttan çýk.
+set c1 = .newc(o.p1.y, o.p1.x, 0)
+set c2 = .newc(o.p2.y, o.p2.x, 0)
+yaziacisi = HatAciHesapla(c1,c2)
+.drawobject o,-1
+
+if .SelectPoint("Yazýnýn Yerleþtirileceði Yeri Seçiniz", koordinat, 2) then
+set yolyaz = .maketext(koordinat,yazi,0,0,yaziboyu,yaziacisi,"M",0)
+.addobject(yolyaz)
+end if
+
+'mesaj=Msgbox("Ýþlem Baþarýyla Tamamlandý",vbInformation, "Salih Görkem Tabak")
+wend
+end with
+set ss = nothing
+set o = nothing
+End Sub
+'MakeText(koordinat,text,flags,font,size,angle,just-dayanma noktasý,Tabaka)
+
+'Doðrunun açýsýný bulacak fonksiyon
+function HatAciHesapla(c1,c2)
+dim m,aci,pi
+pi = 3.14159265358978
+dim farkx,farky
+	farkx = c1.x-c2.x
+	farky = c1.y-c2.y
+		if farkx = 0 AND farky = 0 then 
+			aci = 0 
+		end if
+		if farkx = 0 then 
+			aci = 0 
+		end if
+		if farky = 0 then 
+			aci = pi/2 
+		end if
+		if farkx<0 AND farky<0 then
+			m = abs(farkx)/abs(farky)
+			aci=atn(m)
+		end if
+		if farkx>0 AND farky>0 then 
+			m = abs(farkx)/abs(farky)
+			aci=atn(m)
+		end if
+		if farky<0 AND farkx>0 then
+			m = abs(farkx)/abs(farky)
+			aci=atn(m)
+			aci=(pi*2)-aci 
+		end if
+		if farky>0 AND farkx<0 then
+			m = abs(farkx)/abs(farky)
+			aci=atn(m)		
+			aci=(pi*2)-aci  
+		end if
+	HatAciHesapla=aci
+end function

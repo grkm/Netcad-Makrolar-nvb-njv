@@ -1,0 +1,12 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' NCZ Dosyasý içindeki nesneleri Aktif projenize blok olarak eklemeye yarayan Örnek Kod
+
+Sub Main
+dim blok
+with Netcad
+
+blok = "PLACE_BLOCK_FILE C:\sgorkemtabak\Kliþeler\Logo.NCZ"
+.NetcadCommand blok
+
+end with
+End Sub

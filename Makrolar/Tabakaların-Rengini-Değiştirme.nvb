@@ -1,0 +1,30 @@
+' Salih Görkem Tabak - https://tr.linkedin.com/in/gorkemtabak
+' Tabaka Rengi Deðiþtirme
+
+Sub Main
+dim i,a,bd,n,m
+with Netcad
+
+set BD = Netcad.NewBDialog("Tüm Tabakalarýn Rengini Deðiþtir")
+ BD.Getfloat "secim1","Renk Kodu Giriniz ( Siyah:0-Lacivert:1-Yeþil:2-Turkuaz:3-Kýrmýzý:4-Turuncu:5 )",0,0
+ BD.GETCHECK "secim2","Kilitli Tabakalarda Yapýlmasýn",1
+ if BD.showmodal then
+ n=round(BD.ValueByName("secim1"),0)
+ m=BD.ValueByName("secim2")
+ else
+ exit sub
+ end if
+ for i= 0 to .NumLayers-1
+
+with nclayermanager
+if m=1 and .layer(i).LockActive=TRUE then
+else
+.Layer(i).color = n
+
+end if
+end with
+next
+.netcadcommand("REGEN")
+
+end with
+End Sub
